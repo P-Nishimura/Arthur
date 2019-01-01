@@ -17,11 +17,15 @@
     <header>
       <nav class = "#006064 cyan darken-4">
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo">Arthur</a>
+          <a href="#" class="brand-logo">Arthur</a> 
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><%= link_to "新規登録", new_user_registration_path , class: 'post'%></li>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <% if user_signed_in?  %>
+              <li><%= link_to "トピック作成", "/topic/new", method: :get%></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+            <% else  %>  
+              <li><%=link_to "ログイン", new_user_session_path, method: :get %></li>
+              <li><%= link_to "サインイン", new_user_registration_path , class: 'post'%></li>
+            <% end %>
           </ul>
         </div>
       </nav>
