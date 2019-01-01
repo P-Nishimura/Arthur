@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
   root "topic#index"
   resources :topic do
-    resources :opinion
+    resources :opinion, only[:create,:delete]
   end  
   resources :user
   
