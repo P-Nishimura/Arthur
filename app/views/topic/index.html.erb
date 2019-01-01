@@ -1,0 +1,11 @@
+<div class="conteiner">
+    <div class="contents_row">
+        <% @topics.each do |topics|%>
+            <div class="row">
+                <p><%= topics.title %></p>
+                <p><%= topics.detail %></p>
+                <p><%= topics.user.nickname %></p>
+            </div>
+        <% end %>
+    </div>
+</div>    
