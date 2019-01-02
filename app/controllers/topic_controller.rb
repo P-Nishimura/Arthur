@@ -14,6 +14,11 @@ class TopicController < ApplicationController
         Topic.create(title: topics_params[:title],detail: topics_params[:detail],user_id: current_user.id )
     end
     
+    def show
+        @topics = Topic.find(params[:id])
+        @opinions = @topics.opinion.all
+    end
+    
     private
     def topics_params
         params.permit(:title,:detail,:user_id)

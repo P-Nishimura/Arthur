@@ -1,0 +1,15 @@
+<div class="conteiner">
+    <h1>
+        <%= @topics.title %>
+        <%= @topics.detail %>
+    </h1>
+    
+    <div class="contents_row">
+        <% @opinion.each do |opinion|%>
+            <div class="row">
+                <p><%= opinion.content %></p>
+            </div>    
+        <% end %>
+    </div>    
+    
+</div>
