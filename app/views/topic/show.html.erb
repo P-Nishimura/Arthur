@@ -10,6 +10,7 @@
         <% @opinions.each do |opinion|%>
             <div class="row">
                 <p><%= opinion.content %></p>
+                <p><%= opinion.user.nickname %></p>
             </div>    
         <% end %>
     </div>

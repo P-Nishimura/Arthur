@@ -1,6 +1,6 @@
 class TopicController < ApplicationController
     
-    before_action :move_to_index, except: [:index]
+    before_action :move_to_index, except: [:index,:show]
     
     def index
         @topics = Topic.all.order("created_at DESC")
