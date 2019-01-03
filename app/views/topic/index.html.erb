@@ -5,7 +5,7 @@
                 <p><%= topics.title %></p>
                 <p><%= topics.detail %></p>
                 <p><%= topics.user.nickname %></p>
-                <%= link_to '参加する', "/topic/#{topics.id}", :method => :get %>
+                <%= link_to '参加する',"/topic/#{topics.id}", method: :get %>
             </div>
         <% end %>
     </div>

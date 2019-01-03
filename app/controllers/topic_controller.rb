@@ -16,7 +16,7 @@ class TopicController < ApplicationController
     
     def show
         @topics = Topic.find(params[:id])
-        @opinions = @topics.opinion.all
+        @opinions = @topics.opinions.all
     end
     
     private
