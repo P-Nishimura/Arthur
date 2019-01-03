@@ -6,13 +6,18 @@
         <h2><%= simple_format(@topics.detail) %></h2>
     </div>
     
-    
     <div class="contents_row">
         <% @opinions.each do |opinion|%>
             <div class="row">
                 <p><%= opinion.content %></p>
             </div>    
         <% end %>
-    </div>    
+    </div>
     
+    <% if user_signed_in? %>
+        <%= form_tag("/topic/#{@topics.id}/opinion", method: :post) do %>
+            <textarea name="content" placeholder="語る" rows="3" cols="40"></textarea>
+            <input type="submit", value="SENT">
+        <% end %>
+    <% end %>
 </div>
