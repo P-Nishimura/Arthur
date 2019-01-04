@@ -12,7 +12,7 @@ class TopicController < ApplicationController
     
     def create
         @topic = Topic.create(title: topics_params[:title],detail: topics_params[:detail],user_id: current_user.id )
-        redirect_to "/"
+        redirect_to "/topic/#{@topic.id}"
     end
     
     def show
