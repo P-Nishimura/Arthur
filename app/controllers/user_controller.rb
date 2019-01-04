@@ -5,4 +5,10 @@ class UserController < ApplicationController
         @topics = @user.topics.all
     end
     
+    def edit
+    end
+    
+    def update
+    end
+    
 end

@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   resources :topic do
     resources :opinion, only: [:create,:delete]
   end  
-  resources :user
+  resources :user,only: [:show,:edit,:update]
   
 end
