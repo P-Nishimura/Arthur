@@ -16,6 +16,7 @@ class TopicController < ApplicationController
     
     def show
         @topics = Topic.find(params[:id])
+        redirect_to action: :index unless @topics.open_or_close? 
         @opinions = @topics.opinions.all
     end
     
