@@ -3,7 +3,8 @@
         <p><%= @user.nickname%></p>
         <p><%= @user.reason %></p>
         <p><%= @user.birthday %></p>
-    </div>    
+    </div>
+    <li><%= link_to "編集", "/user/#{current_user.id}/edit", method: :get %></li>
     
     <% @topics.each do |topics|%>
         <div class="row">
