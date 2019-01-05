@@ -1,18 +1,22 @@
-<div class="conteiner">
-    <div class="contents_row">
-        <p><%= simple_format @user.nickname%></p>
-        <p><%= simple_format @user.reason %></p>
-        <p><%= @user.birthday %></p>
-        <li><%= link_to "編集", "/user/#{current_user.id}/edit", method: :get %></li>
+<div class="container">
+    <div class="card-panel hoverable">
+        <h5>プロフィール</h5>
+        <hr>
+        <p>Nickname: <%= @user.nickname%></p>
+        <p>Reason: <%= @user.reason %></p>
+        <p>Birthday: <%= @user.birthday %></p>
+        <hr>
+        <%= link_to "編集", "/user/#{current_user.id}/edit", method: :get, class: "btn btn-primary withripple" %>
     </div>    
     
     <% @topics.each do |topics|%>
-        <div class="row">
+        <div class="card-panel hoverable">
             <p><%= simple_format topics.title %></p>
             <p><%= simple_format topics.detail %></p>
-            <p><%= simple_format topics.user.nickname %></p>
-            <li><%= link_to 'トークルームを見る', "/topic/#{topics.id}", method: :get %></li>
-            <li><%= link_to 'トークルームを削除', "/topic/#{topics.id}", method: :delete %></li>
+            <p>Nickname: <%= topics.user.nickname %></p>
+            <hr>
+            <%= link_to 'トークルームを見る', "/topic/#{topics.id}", method: :get, class: "btn btn-primary withripple" %>
+            <%= link_to 'トークルームを削除', "/topic/#{topics.id}", method: :delete, class: "btn btn-primary withripple" %>
         </div>
     <% end %>
 </div>    

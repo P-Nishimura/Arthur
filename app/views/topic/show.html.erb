@@ -1,24 +1,24 @@
-<div class="conteiner">
-    <div class="contents_row">
-        <h1>
-            <%= simple_format(@topics.title) %>
-        </h1>
-        <h2><%= simple_format(@topics.detail) %></h2>
+<div class="container">
+    <div class="card-panel hoverable">
+        <h3><%= simple_format(@topics.title) %></h3>
+        <h4><%= simple_format(@topics.detail) %></h4>
+        <hr>
         <% if user_signed_in? && current_user.id==@topics.user.id %>
             <%= form_tag("/topic/#{@topics.id}", method: :patch) do %>
                 <input type="hidden" name="open_or_close?" value="false">
-                <input type="submit",value="SENT">
+                <button class="btn btn-primary withripple" type="submit" value="save">トークルームを閉じる</button>
             <% end %>  
         <% end %>
     </div>
     
-    <div class="contents_row">
+    <div class="light">
         <% @opinions.each do |opinion|%>
-            <div class="row">
-                <p><%= opinion.content %></p>
-                <p><%= opinion.user.nickname %></p>
+            <div class="card-panel hoverable">
+                <p><%= simple_format opinion.content %></p>
+                <p>Nickname: <%= opinion.user.nickname %></p>
+                <hr>
                 <% if current_user.id == opinion.user.id%>
-                    <li><%= link_to "削除", "/topic/#{opinion.topic.id}/opinion/#{opinion.id}", method: :delete %></li>
+                    <%= link_to "削除", "/topic/#{opinion.topic.id}/opinion/#{opinion.id}", method: :delete, class: "btn btn-primary withripple" %>
                 <% end %>
             </div>    
         <% end %>
@@ -26,8 +26,17 @@
     
     <% if user_signed_in? %>
         <%= form_tag("/topic/#{@topics.id}/opinion", method: :post) do %>
-            <textarea name="content" placeholder="語る" rows="3" cols="40"></textarea>
-            <input type="submit",value="SENT">
+        　<div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="textarea1" class="materialize-textarea" name="content" rows="3" cols="40"></textarea>
+                  <label for="textarea1">あなたの意見を聞かせてください</label>
+                </div>
+                <button class="btn btn-primary withripple "type="submit" value="save">投稿する</button>
+              </div>
+            </form>
+          </div>
         <% end %>
     <% end %>
 </div>
