@@ -17,6 +17,9 @@
             <div class="row">
                 <p><%= opinion.content %></p>
                 <p><%= opinion.user.nickname %></p>
+                <% if current_user.id == opinion.user.id%>
+                    <li><%= link_to "削除", "/topic/#{opinion.topic.id}/opinion/#{opinion.id}", method: :delete %></li>
+                <% end %>
             </div>    
         <% end %>
     </div>
