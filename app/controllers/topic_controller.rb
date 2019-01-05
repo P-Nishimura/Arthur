@@ -21,6 +21,12 @@ class TopicController < ApplicationController
         @opinions = @topics.opinions.all
     end
     
+    def destroy
+        topic = Topic.find(params[:id])
+        topic.destroy if topic.user.id == current_user.id
+        redirect_to "/user/#{topic.user.id}"
+    end
+    
     private
     def topics_params
         params.permit(:title,:detail,:user_id)

@@ -1,17 +1,19 @@
 <div class="conteiner">
     <div class="contents_row">
-        <p><%= @user.nickname%></p>
-        <p><%= @user.reason %></p>
+        <p><%= simple_format @user.nickname%></p>
+        <p><%= simple_format @user.reason %></p>
         <p><%= @user.birthday %></p>
-    </div>
-    <li><%= link_to "編集", "/user/#{current_user.id}/edit", method: :get %></li>
+        <li><%= link_to "編集", "/user/#{current_user.id}/edit", method: :get %></li>
+    </div>    
     
     <% @topics.each do |topics|%>
         <div class="row">
-            <p><%= topics.title %></p>
-            <p><%= topics.detail %></p>
-            <p><%= topics.user.nickname %></p>
-            <%= link_to 'トークルームを見る',"/topic/#{topics.id}", method: :get %>
+            <p><%= simple_format topics.title %></p>
+            <p><%= simple_format topics.detail %></p>
+            <p><%= simple_format topics.user.nickname %></p>
+            <li><%= link_to 'トークルームを見る', "/topic/#{topics.id}", method: :get %></li>
+            <li><%= link_to 'トークルームを削除', "/topic/#{topics.id}", method: :delete %></li>
+            
         </div>
     <% end %>
 </div>    

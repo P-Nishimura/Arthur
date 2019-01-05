@@ -2,9 +2,9 @@
     <div class="contents_row">
         <% @topics.each do |topics|%>
             <div class="row">
-                <p><%= topics.title %></p>
-                <p><%= topics.detail %></p>
-                <p><%= topics.user.nickname %></p>
+                <p><%= simple_format topics.title %></p>
+                <p><%= simple_format topics.detail %></p>
+                <p><%= simple_format  topics.user.nickname %></p>
                 <% if user_signed_in? %>
                     <%= link_to '参加する',"/topic/#{topics.id}", method: :get %>
                 <% end %>    
