@@ -13,7 +13,6 @@
             <p><%= simple_format topics.user.nickname %></p>
             <li><%= link_to 'トークルームを見る', "/topic/#{topics.id}", method: :get %></li>
             <li><%= link_to 'トークルームを削除', "/topic/#{topics.id}", method: :delete %></li>
-            
         </div>
     <% end %>
 </div>    

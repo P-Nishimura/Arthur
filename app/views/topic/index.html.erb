@@ -1,14 +1,16 @@
 <div class="conteiner">
     <div class="contents_row">
         <% @topics.each do |topics|%>
-            <div class="row">
-                <p><%= simple_format topics.title %></p>
-                <p><%= simple_format topics.detail %></p>
-                <p><%= simple_format  topics.user.nickname %></p>
-                <% if user_signed_in? %>
-                    <%= link_to '参加する',"/topic/#{topics.id}", method: :get %>
-                <% end %>    
-            </div>
+            <% if topics.open_or_close? %>
+                <div class="row">
+                    <p><%= simple_format topics.title %></p>
+                    <p><%= simple_format topics.detail %></p>
+                    <p><%= simple_format  topics.user.nickname %></p>
+                    <% if user_signed_in? %>
+                        <%= link_to '参加する',"/topic/#{topics.id}", method: :get %>
+                    <% end %>    
+                </div>
+            <% end %>
         <% end %>
     </div>
 </div>    

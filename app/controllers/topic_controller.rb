@@ -17,7 +17,9 @@ class TopicController < ApplicationController
     
     def show
         @topics = Topic.find(params[:id])
-        redirect_to action: :index unless @topics.open_or_close? 
+        if user_signed_in? && current_user.id ==! @topics.user.id
+            redirect_to action: :index unless @topics.open_or_close? 
+        end
         @opinions = @topics.opinions.all
     end
     
@@ -27,6 +29,11 @@ class TopicController < ApplicationController
         redirect_to "/user/#{topic.user.id}"
     end
     
+    def update
+        topic = Topic.find(params[:id])
+        topic.update(update_topic_params)
+    end
+    
     private
     def topics_params
         params.permit(:title,:detail,:user_id)
@@ -34,6 +41,10 @@ class TopicController < ApplicationController
     
     def move_to_index
         redirect_to action: :index unless user_signed_in?
+    end
+    
+    def update_topic_params
+        params.permit(:open_or_close?)
     end
     
 end

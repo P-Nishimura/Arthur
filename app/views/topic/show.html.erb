@@ -4,6 +4,12 @@
             <%= simple_format(@topics.title) %>
         </h1>
         <h2><%= simple_format(@topics.detail) %></h2>
+        <% if user_signed_in? && current_user.id==@topics.user.id %>
+            <%= form_tag("/topic/#{@topics.id}", method: :patch) do %>
+                <input type="hidden" name="open_or_close?" value="false">
+                <input type="submit",value="SENT">
+            <% end %>  
+        <% end %>
     </div>
     
     <div class="contents_row">
@@ -18,7 +24,8 @@
     <% if user_signed_in? %>
         <%= form_tag("/topic/#{@topics.id}/opinion", method: :post) do %>
             <textarea name="content" placeholder="語る" rows="3" cols="40"></textarea>
-            <input type="submit", value="SENT">
+            <input type="submit",value="SENT">
         <% end %>
     <% end %>
 </div>
+
