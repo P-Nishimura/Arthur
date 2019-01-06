@@ -1,11 +1,27 @@
-<div class="row">
-  <h3>
-    気になる話題
-  </h3>
-  
+<h3>
+  気になる話題
+</h3>
+
   <%= form_tag('/topic',method: :post) do %>
-      <textarea name="title" placeholder="タイトル"></textarea>
-      <textarea name="detail" placeholder="詳細"></textarea>
-      <input class="btn btn-primary withripple" type='submit' value='SENT'></input>
+  <div class="container"> 
+    <div class="row">
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="textarea1" class="materialize-textarea" name="title" rows="1" cols="30"></textarea>
+            <label for="textarea1">タイトル</label>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea id="textarea1" class="materialize-textarea" name="detail" rows="3" cols="40"></textarea>
+            <label for="textarea1">詳細</label>
+          </div>
+        </div>
+    </div>
+    
+    <input class="btn btn-primary withripple "type="submit" value="SENT">
+  </div>
   <% end %>
-</div>
+  
