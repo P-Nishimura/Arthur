@@ -16,7 +16,6 @@
         <% end %>
     </div>
     
-    <div class="light">
         <% @opinions.each do |opinion|%>
             <div class="card-panel hoverable">
                 <p><%= simple_format opinion.content %></p>
@@ -27,12 +26,10 @@
                 <% end %>
             </div>    
         <% end %>
-    </div>
     
     <% if @topics.open_or_close? && user_signed_in? %>
             <%= form_tag("/topic/#{@topics.id}/opinion", method: :post, remote: true) do %>
             　<div class="row">
-                <form class="col s12">
                   <div class="row">
                     <div class="input-field col s12">
                       <textarea id="textarea1" class="materialize-textarea" name="content" rows="3" cols="40"></textarea>
@@ -40,7 +37,6 @@
                     </div>
                     <button class="btn btn-primary withripple "type="submit" value="save">投稿する</button>
                   </div>
-                </form>
               </div>
             <% end %>
     <% end %>
