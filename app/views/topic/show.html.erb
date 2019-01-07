@@ -29,9 +29,8 @@
         <% end %>
     </div>
     
-    <% if @topics.open_or_close? %>
-        <% if user_signed_in? %>
-            <%= form_tag("/topic/#{@topics.id}/opinion", method: :post, remote: :true) do %>
+    <% if @topics.open_or_close? && user_signed_in? %>
+            <%= form_tag("/topic/#{@topics.id}/opinion", method: :post, remote: true) do %>
             　<div class="row">
                 <form class="col s12">
                   <div class="row">
@@ -44,7 +43,5 @@
                 </form>
               </div>
             <% end %>
-        <% end %>
     <% end %>
 </div>
-
