@@ -6,17 +6,21 @@
         <p>Reason: <%= @user.reason %></p>
         <p>Birthday: <%= @user.birthday %></p>
         <hr>
-        <%= link_to "編集", "/user/#{current_user.id}/edit", method: :get, class: "btn btn-primary withripple" %>
-    </div>    
+        <% if user_signed_in? && current_user.id==@user.id%>
+            <%= link_to "編集", "/user/#{current_user.id}/edit", method: :get, class: "btn btn-primary withripple" %>
+        <% end %>
+    </div>
     
-    <% @topics.each do |topics|%>
-        <div class="card-panel hoverable">
-            <p><%= simple_format topics.title %></p>
-            <p><%= simple_format topics.detail %></p>
-            <p>Nickname: <%= topics.user.nickname %></p>
-            <hr>
-            <%= link_to 'トークルームを見る', "/topic/#{topics.id}", method: :get, class: "btn btn-primary withripple" %>
-            <%= link_to 'トークルームを削除', "/topic/#{topics.id}", method: :delete, class: "btn btn-primary withripple" %>
-        </div>
+    <% if user_signed_in? && current_user.id==@user.id%>
+        <% @topics.each do |topics|%>
+            <div class="card-panel hoverable">
+                <p><%= simple_format topics.title %></p>
+                <p><%= simple_format topics.detail %></p>
+                <p>Nickname: <%= topics.user.nickname %></p>
+                <hr>
+                <%= link_to 'トークルームを見る', "/topic/#{topics.id}", method: :get, class: "btn btn-primary withripple" %>
+                <%= link_to 'トークルームを削除', "/topic/#{topics.id}", method: :delete, class: "btn btn-primary withripple" %>
+            </div>
+        <% end %>
     <% end %>
 </div>    

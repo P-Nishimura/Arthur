@@ -1,8 +1,10 @@
 <div class="container">
     <div class="card-panel hoverable">
-        <h3><%= simple_format(@topics.title) %></h3>
-        <h4><%= simple_format(@topics.detail) %></h4>
-        <h6>Nickname: <%= @topics.user.nickname %></h6>
+        <div>テーマ：</div>
+        <h4><%= simple_format(@topics.title) %></h4>
+        <div>詳細：</div>
+        <h5><%= simple_format(@topics.detail) %></h5>
+        <h6>Nickname: <%= link_to "#{@topics.user.nickname}", "/user/#{@topics.user.id}", method: :get %></h6>
         <hr>
         <% if @topics.open_or_close? %>
             <% if user_signed_in? && current_user.id==@topics.user.id %>
@@ -29,7 +31,7 @@
     
     <% if @topics.open_or_close? %>
         <% if user_signed_in? %>
-            <%= form_tag("/topic/#{@topics.id}/opinion", method: :post) do %>
+            <%= form_tag("/topic/#{@topics.id}/opinion", method: :post, remote: :true) do %>
             　<div class="row">
                 <form class="col s12">
                   <div class="row">

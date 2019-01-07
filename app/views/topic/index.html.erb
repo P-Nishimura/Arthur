@@ -6,10 +6,12 @@
                     <h5>トークルーム</h5>
                     <p><%= simple_format topics.title %></p>
                     <p><%= simple_format topics.detail %></p>
-                    <p>Nickname: <%= topics.user.nickname %></p>
+                    <p>Nickname: <%= link_to "#{topics.user.nickname}", "/user/#{topics.user.id}", method: :get %></p>
                     <hr>
                     <% if user_signed_in? %>
                         <%= link_to '参加する',"/topic/#{topics.id}", method: :get, class: "btn btn-primary withripple" %>
+                    <% else %>
+                        <%= link_to '閲覧する',"/topic/#{topics.id}", method: :get, class: "btn btn-primary withripple" %>
                     <% end %>    
                 </div>
             <% end %>
