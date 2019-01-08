@@ -16,31 +16,12 @@
         <% end %>
     </div>
     
-        <% @opinions.each do |opinion|%>
-            <% if opinion.unfortunate %>
-                <div class="card-panel hoverable">
-                    <p><%= simple_format opinion.content %></p>
-                    <p>Nickname: <%= opinion.user.nickname %></p>
-                    <hr>
-                    <% if current_user.id == opinion.user.id%>
-                        <%= link_to "削除", "/topic/#{opinion.topic.id}/opinion/#{opinion.id}", method: :delete, class: "btn btn-primary withripple" %>
-                    <% end %>
-                    <% if user_signed_in? && current_user.id==opinion.topic.user.id %>
-                        <div class="button_form">
-                            <%= form_tag("/topic/#{opinion.topic.id}/opinion/#{opinion.id}", method: :patch) do %>
-                                <input type="hidden" name="unfortunate" value="false">
-                                <button class="btn btn-primary withripple" type="submit" value="save">この発言を閉じる</button>
-                            <% end %>
-                        </div>
-                    <% end %>
-                </div>
-                <% else %>
-                    <div class="card-panel hoverable">この発言は削除されました<hr></div>
-            <% end %>
-        <% end %>
+    <div id="render">
+        <%= render @opinions %>
+    </div>
     
     <% if @topics.open_or_close? && user_signed_in? %>
-            <%= form_tag("/topic/#{@topics.id}/opinion", method: :post, remote: true) do %>
+            <%= form_tag("/topic/#{@topics.id}/opinions", method: :post, remote: true) do %>
             　<div class="row">
                   <div class="row">
                     <div class="input-field col s12">

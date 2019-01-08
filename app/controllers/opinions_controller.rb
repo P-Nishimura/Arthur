@@ -1,8 +1,9 @@
-class OpinionController < ApplicationController
+class OpinionsController < ApplicationController
     
     def create
-        @opinion = Opinion.create(content: opinion_params[:content], user_id: current_user.id, topic_id: opinion_params[:topic_id])
-        redirect_to "/topic/#{@opinion.topic.id}"
+        Opinion.create(content: opinion_params[:content], user_id: current_user.id, topic_id: opinion_params[:topic_id])
+        topic = Topic.find(params[:topic_id])
+        @opinions = topic.opinions.all
     end
     
     def destroy
