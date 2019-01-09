@@ -4,7 +4,7 @@
         <p><%= simple_format opinion.content %></p>
         <p>Nickname: <%= opinion.user.nickname %></p>
         <hr>
-        <% if current_user.id == opinion.user.id%>
+        <% if user_signed_in? && current_user.id == opinion.user.id%>
             <%= link_to "削除", "/topic/#{opinion.topic.id}/opinions/#{opinion.id}", method: :delete, class: "btn btn-primary withripple" %>
         <% end %>
         <% if user_signed_in? && current_user.id==opinion.topic.user.id %>
